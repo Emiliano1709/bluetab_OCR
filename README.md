@@ -1,5 +1,6 @@
 # bluetab_OCR
  La siguiente prueba tiene como objetivo evaluar el manejo de herramientas OCR para la extracción de datos.
+ Además de la lectura y reconstrucción de archivos.
 
 ## Estructura general
 Se usará streamlit como una interfaz práctica para el usuario, además del servicio de despliegue.
