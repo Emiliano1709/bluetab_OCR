@@ -58,6 +58,7 @@ def hocr_csv_estructurado(ruta_hocr):
         for b in lineas[1:]:
             texto = b.get_text(strip=True)
             data.append({header: texto})
+
     return data
 
 # -------------------------------- Interfaz (MAIN)-------------------------------------
