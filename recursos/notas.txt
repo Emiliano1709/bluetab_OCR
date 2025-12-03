@@ -1,0 +1,46 @@
+=======
+La idea general es simple:
+- Hacemos un lector de archivos hocr 
+    que permita manipular los datos para 
+- desplegar el formato en csv
+- Estructurar los datos como una tabla con una vista previa para el usuario
+=======
+
+//
+=> Conceptos generales
+    Un hocr es un subconjunto de HTML, por lo que vamos a partir de la premisa de que
+    se pueden manipular de la misma manera y, por ende, usar librerías de manejo de HTML,
+    para poder trabajar en el código con ello
+
+    Dentro de los docuementos hay etiquetas span que tienen un marcador tipo "ocr_carea"
+    que sirven como separadores para la tabla, y debajo de ellos están las líneas de información
+//
+
+## NOTAS ADICIONALES:
+    Por algún motivo que por ahora desconozco, la tabla se despliega como una diagonal y no con la
+    estructura del documento general del PDF exhibido.
+
+-- Aquí se agregan las funciones que ya no se usan o algunas que fueron renovadas, pero se toman como referencia --
+
+#funcion de sólo lectura de hocr
+def hocr_csv(ruta_hocr, salida_csv):
+    
+    # Leemos el archivo HOCR
+    with open(ruta_hocr, "r", encoding="utf-8") as f:
+        sopa = BeautifulSoup(f, "html.parser")
+    
+    # Extraemos la info de cada palabra
+    data = []
+    for linea in sopa.find_all("span", class_="ocr_line"):
+        text = linea.get_text(strip=True)
+
+        data.append({"text": text})
+    
+    pd.DataFrame(data).to_csv(salida_csv, index=False)
+
+
+if texto:  # Evitar líneas vacías
+    data.append({header: texto})
+
+if not lineas:
+    continue # Si no hay líneas, le seguimos
